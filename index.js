@@ -2,6 +2,7 @@ const production = (process.env["NODE_ENV"] == "production");
 
 const express = require("express");
 const app = express();
+const router = require('./router.js');
 
 const http = require("http");
 const https = require("https");
@@ -12,13 +13,7 @@ if(production) app.use((req, res, next) => {
     res.redirect("https://manne.dev" + req.originalUrl);
 });
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/homepage.html");
-});
-
-app.get("/info",(req, res) => {
-    res.end(`You are (${req.ip}) visiting ${req.hostname} using ${req.protocol}.`);
-});
+app.use(router);
 
 if(production){
     const httpsOptions = {
