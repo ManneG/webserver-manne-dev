@@ -1,0 +1,34 @@
+*,
+*::before,
+*::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+}
+
+nav{
+    position: absolute;
+    inset: 50%;
+}
+
+nav > ul{
+    --child-count: 5;
+    list-style: none;
+}
+
+nav > ul > li{
+    --rotation: calc(360deg * calc(calc(var(--order, 0) - 1) / var(--child-count)));
+    --magnitude: 10rem;
+    position: absolute;
+    width: max-content;
+    transform-origin: 50% 10rem;
+    transform: 
+        translate(
+            calc(var(--magnitude) * sin(var(--rotation))),
+            calc(calc(-1 * var(--magnitude)) * cos(var(--rotation)))
+        );
+}
