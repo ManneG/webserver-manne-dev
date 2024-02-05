@@ -10,7 +10,7 @@ const elements = (ids => {
   "defect",
 ])
 
-const socket = new WebSocket("ws://localhost:8080/game");
+const socket = new WebSocket("ws://manne.dev/game");
 
 socket.addEventListener("open", (event) => {
   elements.cooperate.onclick = () => socket.send("cooperate");
